@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
-const LOGO = '/agentsoul-logo.png';
+const LOGO = 'https://raw.githubusercontent.com/Caltongroup/agentsoul/main/agentsoul-logo.png';
 
 const verticals = [
   { icon: '👥', name: 'Human Resources', desc: 'Answer policy questions, onboarding guides, benefits lookups — instantly. Your handbook, always available.' },
@@ -21,36 +21,38 @@ const steps = [
 const pricing = [
   {
     name: 'The Box',
-    price: 'Hardware + Setup',
-    sub: 'one-time',
+    price: '$750',
+    sub: 'one-time setup',
+    monthly: '$99–$125/mo Care Plan',
     color: 'border-violet-500',
     badge: 'Privacy First',
     badgeColor: 'bg-violet-500',
     features: [
-      'Orange Pi 5 Pro hardware',
-      'Pre-loaded AI model (runs offline)',
+      'Orange Pi 5 Pro hardware, pre-loaded',
+      'Private AI — runs 100% offline',
       'Unlimited users on your network',
-      'No monthly fees, ever',
       'Your data never leaves your building',
       'Remote support via Tailscale',
+      'Care Plan includes updates & priority support',
     ],
     cta: 'Get a Quote',
     href: '#contact',
   },
   {
     name: 'Cloud',
-    price: 'From $49',
+    price: 'From $125',
     sub: 'per month',
+    monthly: 'No hardware to manage',
     color: 'border-cyan-400',
     badge: 'Fast Setup',
     badgeColor: 'bg-cyan-500',
     features: [
-      'Hosted on dedicated cloud server',
-      'Access from anywhere',
+      'Hosted on dedicated private server',
+      'Access from anywhere, any device',
       'SSL + bot protection included',
-      'Claude API or local model options',
+      'Same AI model, same privacy promise',
       'Subdomain on agentsoul.dev',
-      'Scales as you grow',
+      'Scales as your team grows',
     ],
     cta: 'Get a Quote',
     href: '#contact',
@@ -63,7 +65,7 @@ const pricing = [
   <!-- NAV -->
   <nav class="fixed top-0 left-0 right-0 z-50 bg-gray-950/80 backdrop-blur border-b border-gray-800">
     <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-      <img src={LOGO} alt="AgentSoul" class="h-8 w-auto" />
+      <img src={LOGO} alt="AgentSoul" class="h-12 w-auto" />
       <div class="hidden md:flex items-center gap-8 text-sm text-gray-400">
         <a href="#how" class="hover:text-white transition-colors">How it works</a>
         <a href="#verticals" class="hover:text-white transition-colors">Industries</a>
@@ -82,7 +84,7 @@ const pricing = [
     </div>
 
     <div class="relative z-10 max-w-4xl mx-auto">
-      <img src={LOGO} alt="AgentSoul" class="h-72 w-auto mx-auto mb-8" />
+      <img src={LOGO} alt="AgentSoul" class="h-40 w-auto mx-auto mb-8" />
 
       <div class="inline-flex items-center gap-2 bg-gray-800 border border-gray-700 rounded-full px-4 py-1.5 text-sm text-gray-300 mb-6">
         <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
@@ -219,6 +221,7 @@ const pricing = [
             <div class="mb-6">
               <span class="text-3xl font-black">{plan.price}</span>
               <span class="text-gray-500 text-sm ml-2">{plan.sub}</span>
+              <div class="text-cyan-400 text-sm mt-1 font-medium">{plan.monthly}</div>
             </div>
             <ul class="space-y-3 mb-8 flex-1">
               {plan.features.map((f) => (
@@ -245,7 +248,7 @@ const pricing = [
         <p class="text-gray-400 text-lg">Tell us about your business and we'll put together the right setup.</p>
       </div>
 
-      <form class="space-y-5" name="contact" method="POST" data-netlify="true">
+      <form class="space-y-5" name="contact" method="POST" action="mailto:admin@caltongroup.com" enctype="text/plain">
         <div class="grid md:grid-cols-2 gap-5">
           <div>
             <label class="block text-sm text-gray-400 mb-2">Name</label>
