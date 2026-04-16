@@ -1,17 +1,353 @@
 ---
+import Layout from '../layouts/Layout.astro';
 
+const LOGO = '/agentsoul-logo.png';
+
+const verticals = [
+  { icon: '👥', name: 'Human Resources', desc: 'Answer policy questions, onboarding guides, benefits lookups — instantly. Your handbook, always available.' },
+  { icon: '🔧', name: 'HVAC & Trades', desc: 'Equipment manuals, service procedures, warranty lookups. Field techs get answers in seconds, not phone calls.' },
+  { icon: '🦷', name: 'Dental Practice', desc: 'Patient FAQs, insurance coverage, procedure prep. Front desk handles more with less back-and-forth.' },
+  { icon: '🚗', name: 'Auto Shop', desc: 'Labor rates, common repairs, parts info. Customers get real answers while your techs stay in the bay.' },
+  { icon: '❤️', name: 'Senior Care', desc: 'Care plans, medication schedules, family communication. Staff have what they need at the point of care.' },
+  { icon: '📻', name: 'Media & Radio', desc: 'Rundowns, ad copy, station policies. Your team stays on-brand and on-schedule without hunting for files.' },
+];
+
+const steps = [
+  { num: '01', title: 'Deploy', desc: 'We ship a pre-configured box or spin up a cloud instance. One script, 20 minutes, done.' },
+  { num: '02', title: 'Onboard', desc: 'Run the wizard. Tell it your business name, industry, and drop in your documents. No coding.' },
+  { num: '03', title: 'Ask', desc: 'Open a browser, start chatting. Your team gets instant, accurate answers from your own data.' },
+];
+
+const pricing = [
+  {
+    name: 'The Box',
+    price: 'Hardware + Setup',
+    sub: 'one-time',
+    color: 'border-violet-500',
+    badge: 'Privacy First',
+    badgeColor: 'bg-violet-500',
+    features: [
+      'Orange Pi 5 Pro hardware',
+      'Pre-loaded AI model (runs offline)',
+      'Unlimited users on your network',
+      'No monthly fees, ever',
+      'Your data never leaves your building',
+      'Remote support via Tailscale',
+    ],
+    cta: 'Get a Quote',
+    href: '#contact',
+  },
+  {
+    name: 'Cloud',
+    price: 'From $49',
+    sub: 'per month',
+    color: 'border-cyan-400',
+    badge: 'Fast Setup',
+    badgeColor: 'bg-cyan-500',
+    features: [
+      'Hosted on dedicated cloud server',
+      'Access from anywhere',
+      'SSL + bot protection included',
+      'Claude API or local model options',
+      'Subdomain on agentsoul.dev',
+      'Scales as you grow',
+    ],
+    cta: 'Get a Quote',
+    href: '#contact',
+  },
+];
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout>
+
+  <!-- NAV -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-gray-950/80 backdrop-blur border-b border-gray-800">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <img src={LOGO} alt="AgentSoul" class="h-8 w-auto" />
+      <div class="hidden md:flex items-center gap-8 text-sm text-gray-400">
+        <a href="#how" class="hover:text-white transition-colors">How it works</a>
+        <a href="#verticals" class="hover:text-white transition-colors">Industries</a>
+        <a href="#demo" class="hover:text-white transition-colors">Demo</a>
+        <a href="#pricing" class="hover:text-white transition-colors">Pricing</a>
+        <a href="#contact" class="bg-violet-600 hover:bg-violet-500 text-white px-4 py-2 rounded-lg transition-colors font-medium">Get Started</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="min-h-screen flex flex-col items-center justify-center text-center px-6 pt-24 pb-16 relative overflow-hidden">
+    <!-- Glow -->
+    <div class="absolute inset-0 pointer-events-none">
+      <div class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-violet-600/20 rounded-full blur-3xl"></div>
+    </div>
+
+    <div class="relative z-10 max-w-4xl mx-auto">
+      <img src={LOGO} alt="AgentSoul" class="h-72 w-auto mx-auto mb-8" />
+
+      <div class="inline-flex items-center gap-2 bg-gray-800 border border-gray-700 rounded-full px-4 py-1.5 text-sm text-gray-300 mb-6">
+        <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+        Private AI — no data leaves your business
+      </div>
+
+      <h1 class="text-5xl md:text-7xl font-extrabold leading-tight mb-6">
+        Your business.<br />
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-cyan-400">Your AI.</span><br />
+        Your box.
+      </h1>
+
+      <p class="text-xl text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed">
+        AgentSoul puts a private, locally-run AI agent inside your business in under an hour.
+        It knows your documents, answers your team's questions, and never shares your data with anyone.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="#demo" class="bg-violet-600 hover:bg-violet-500 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-colors">
+          See a Live Demo
+        </a>
+        <a href="#contact" class="bg-gray-800 hover:bg-gray-700 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-colors border border-gray-700">
+          Get a Quote
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="how" class="py-24 px-6 bg-gray-900/50">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold mb-4">Up and running in an afternoon</h2>
+        <p class="text-gray-400 text-lg max-w-xl mx-auto">No IT department required. No complicated setup. Just three steps.</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        {steps.map((step) => (
+          <div class="relative bg-gray-800/50 border border-gray-700 rounded-2xl p-8 hover:border-violet-500/50 transition-colors">
+            <div class="text-6xl font-black text-gray-700 mb-4">{step.num}</div>
+            <h3 class="text-2xl font-bold mb-3">{step.title}</h3>
+            <p class="text-gray-400 leading-relaxed">{step.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- VERTICALS -->
+  <section id="verticals" class="py-24 px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold mb-4">Built for your industry</h2>
+        <p class="text-gray-400 text-lg max-w-xl mx-auto">Every AgentSoul deployment is configured for your specific vertical. Your documents, your rules, your personality.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {verticals.map((v) => (
+          <div class="bg-gray-800/40 border border-gray-700 rounded-2xl p-6 hover:border-violet-500/50 hover:bg-gray-800/70 transition-all cursor-default">
+            <div class="text-4xl mb-4">{v.icon}</div>
+            <h3 class="text-xl font-bold mb-2">{v.name}</h3>
+            <p class="text-gray-400 text-sm leading-relaxed">{v.desc}</p>
+          </div>
+        ))}
+      </div>
+
+      <p class="text-center text-gray-500 mt-8 text-sm">Don't see your industry? AgentSoul works for any business with documents, policies, or knowledge to share.</p>
+    </div>
+  </section>
+
+  <!-- DEMO -->
+  <section id="demo" class="py-24 px-6 bg-gray-900/50">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-4xl font-bold mb-4">Try it live</h2>
+        <p class="text-gray-400 text-lg">This is a real AgentSoul agent running on local hardware. Ask it anything about the demo business.</p>
+      </div>
+
+      <!-- Chat Widget -->
+      <div class="bg-gray-800 border border-gray-700 rounded-2xl overflow-hidden shadow-2xl">
+        <!-- Chat header -->
+        <div class="bg-gray-750 border-b border-gray-700 px-6 py-4 flex items-center gap-3">
+          <div class="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+          <span class="font-semibold">AgentSoul Demo</span>
+          <span class="text-xs text-gray-500 ml-auto">Running on local hardware</span>
+        </div>
+
+        <!-- Chat messages -->
+        <div id="chat-messages" class="h-80 overflow-y-auto p-6 space-y-4 flex flex-col">
+          <div class="flex gap-3">
+            <div class="w-8 h-8 bg-violet-600 rounded-full flex items-center justify-center text-sm font-bold shrink-0">A</div>
+            <div class="bg-gray-700 rounded-2xl rounded-tl-none px-4 py-3 max-w-md text-sm text-gray-200 leading-relaxed">
+              Hi! I'm an AgentSoul demo agent. I have access to sample business documents. Ask me anything — about policies, procedures, or how I work.
+            </div>
+          </div>
+        </div>
+
+        <!-- Input -->
+        <div class="border-t border-gray-700 p-4 flex gap-3">
+          <input
+            id="chat-input"
+            type="text"
+            placeholder="Ask me something..."
+            class="flex-1 bg-gray-700 border border-gray-600 rounded-xl px-4 py-3 text-sm text-gray-100 placeholder-gray-500 focus:outline-none focus:border-violet-500 transition-colors"
+          />
+          <button
+            id="chat-send"
+            class="bg-violet-600 hover:bg-violet-500 text-white px-5 py-3 rounded-xl font-medium text-sm transition-colors"
+          >
+            Send
+          </button>
+        </div>
+      </div>
+
+      <p class="text-center text-gray-600 text-xs mt-4">Demo agent connects to a live AgentSoul instance. Response time reflects local hardware speed.</p>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing" class="py-24 px-6">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold mb-4">Simple pricing</h2>
+        <p class="text-gray-400 text-lg">Own the hardware. Or let us host it. Either way, your data stays yours.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+        {pricing.map((plan) => (
+          <div class={`bg-gray-800/50 border-2 ${plan.color} rounded-2xl p-8 flex flex-col`}>
+            <div class="flex items-center justify-between mb-6">
+              <h3 class="text-2xl font-bold">{plan.name}</h3>
+              <span class={`${plan.badgeColor} text-white text-xs font-semibold px-3 py-1 rounded-full`}>{plan.badge}</span>
+            </div>
+            <div class="mb-6">
+              <span class="text-3xl font-black">{plan.price}</span>
+              <span class="text-gray-500 text-sm ml-2">{plan.sub}</span>
+            </div>
+            <ul class="space-y-3 mb-8 flex-1">
+              {plan.features.map((f) => (
+                <li class="flex items-start gap-3 text-sm text-gray-300">
+                  <span class="text-green-400 mt-0.5">✓</span>
+                  {f}
+                </li>
+              ))}
+            </ul>
+            <a href={plan.href} class="block text-center bg-gray-700 hover:bg-gray-600 text-white py-3 rounded-xl font-semibold transition-colors">
+              {plan.cta}
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="py-24 px-6 bg-gray-900/50">
+    <div class="max-w-2xl mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-4xl font-bold mb-4">Let's talk</h2>
+        <p class="text-gray-400 text-lg">Tell us about your business and we'll put together the right setup.</p>
+      </div>
+
+      <form class="space-y-5" name="contact" method="POST" data-netlify="true">
+        <div class="grid md:grid-cols-2 gap-5">
+          <div>
+            <label class="block text-sm text-gray-400 mb-2">Name</label>
+            <input type="text" name="name" required class="w-full bg-gray-800 border border-gray-700 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-violet-500 transition-colors" placeholder="Jane Smith" />
+          </div>
+          <div>
+            <label class="block text-sm text-gray-400 mb-2">Email</label>
+            <input type="email" name="email" required class="w-full bg-gray-800 border border-gray-700 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-violet-500 transition-colors" placeholder="jane@company.com" />
+          </div>
+        </div>
+        <div>
+          <label class="block text-sm text-gray-400 mb-2">Business / Industry</label>
+          <input type="text" name="business" class="w-full bg-gray-800 border border-gray-700 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-violet-500 transition-colors" placeholder="Acme HVAC — 12 employees" />
+        </div>
+        <div>
+          <label class="block text-sm text-gray-400 mb-2">What would your agent need to know?</label>
+          <textarea name="message" rows="4" class="w-full bg-gray-800 border border-gray-700 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-violet-500 transition-colors resize-none" placeholder="We have an employee handbook, service manuals, and pricing sheets..."></textarea>
+        </div>
+        <button type="submit" class="w-full bg-violet-600 hover:bg-violet-500 text-white py-4 rounded-xl font-semibold text-lg transition-colors">
+          Send Message
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-gray-800 py-10 px-6">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500">
+      <div class="flex items-center gap-3">
+        <img src={LOGO} alt="AgentSoul" class="h-6 w-auto opacity-70" />
+        <span>© 2026 AgentSoul. A product of Calton Group LLC.</span>
+      </div>
+      <div class="flex items-center gap-6">
+        <a href="https://github.com/Caltongroup/agent-in-a-box" class="hover:text-white transition-colors">GitHub</a>
+        <a href="#contact" class="hover:text-white transition-colors">Contact</a>
+        <span class="text-gray-700">agentsoul.dev</span>
+      </div>
+    </div>
+  </footer>
+
+</Layout>
+
+<!-- Chat widget script -->
+<script>
+  const input = document.getElementById('chat-input') as HTMLInputElement;
+  const send = document.getElementById('chat-send') as HTMLButtonElement;
+  const messages = document.getElementById('chat-messages') as HTMLDivElement;
+
+  const DEMO_ENDPOINT = 'https://demo.agentsoul.dev/chat';
+
+  function addMessage(text: string, role: 'user' | 'agent') {
+    const wrap = document.createElement('div');
+    wrap.className = 'flex gap-3' + (role === 'user' ? ' flex-row-reverse' : '');
+
+    const avatar = document.createElement('div');
+    avatar.className = role === 'agent'
+      ? 'w-8 h-8 bg-violet-600 rounded-full flex items-center justify-center text-sm font-bold shrink-0'
+      : 'w-8 h-8 bg-gray-600 rounded-full flex items-center justify-center text-sm font-bold shrink-0';
+    avatar.textContent = role === 'agent' ? 'A' : 'U';
+
+    const bubble = document.createElement('div');
+    bubble.className = role === 'agent'
+      ? 'bg-gray-700 rounded-2xl rounded-tl-none px-4 py-3 max-w-md text-sm text-gray-200 leading-relaxed'
+      : 'bg-violet-700 rounded-2xl rounded-tr-none px-4 py-3 max-w-md text-sm text-white leading-relaxed';
+    bubble.textContent = text;
+
+    wrap.appendChild(avatar);
+    wrap.appendChild(bubble);
+    messages.appendChild(wrap);
+    messages.scrollTop = messages.scrollHeight;
+  }
+
+  async function sendMessage() {
+    const text = input.value.trim();
+    if (!text) return;
+
+    addMessage(text, 'user');
+    input.value = '';
+    send.disabled = true;
+    send.textContent = '...';
+
+    try {
+      const res = await fetch(DEMO_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: text }),
+      });
+
+      if (!res.ok) throw new Error('Demo offline');
+
+      const data = await res.json();
+      addMessage(data.response || data.message || 'No response', 'agent');
+    } catch {
+      addMessage('The live demo is currently offline. Contact us for a personal walkthrough!', 'agent');
+    }
+
+    send.disabled = false;
+    send.textContent = 'Send';
+  }
+
+  send.addEventListener('click', sendMessage);
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') sendMessage();
+  });
+</script>
